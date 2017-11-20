@@ -1,0 +1,26 @@
+<form (ngSubmit)="createArticle()" #createArticleForm="ngForm">
+  <h2 mat-dialog-title>发表文章</h2>
+  <mat-dialog-content>
+    
+      <mat-form-field style="width:100%">
+        <input type="text" name="userName" required matInput [(ngModel)]="artInfo.title" placeholder="标题 字数10以上">
+      </mat-form-field>
+      
+      <mat-form-field style="width:100%">
+          <app-edit-toolbar 
+          (getImgUrl)="getImgUrl($event)"
+          >
+          </app-edit-toolbar >   
+          <textarea
+          style="height: 400px;
+          border: 2px solid gray;
+          border-radius: 6px;"
+           matInput name="content" [(ngModel)]="artInfo.content" placeholder="内容"></textarea>
+        </mat-form-field>
+      
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button type="submit" mat-button >发表</button>
+    <button type="button" mat-button (click)="cancel()">取消</button>
+  </mat-dialog-actions>
+</form>

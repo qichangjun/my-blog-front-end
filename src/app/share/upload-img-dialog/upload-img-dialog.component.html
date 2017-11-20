@@ -1,0 +1,15 @@
+
+    <h2 mat-dialog-title>图片</h2>
+    <mat-dialog-content>
+        <div #uploadContainer id="uploadContainer" >        
+            <span>
+                    {{uploadingImg ? (uploadingImg.upload.filename + ':' + uploadingImg.upload.progress) : '上传图片'}}
+            </span>                
+            <span *ngIf="isUploading">上传过过程中，请不要关闭本页面</span>
+            <span *ngIf="!isUploading && uploadingImg">上传完成</span>
+        </div>                    
+    </mat-dialog-content>
+    
+    <mat-dialog-actions>
+      <button type="button" mat-button (disabled)="isUploading" (click)="cancel()">关闭</button>
+    </mat-dialog-actions>

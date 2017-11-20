@@ -28,11 +28,17 @@ export class LoginComponent implements OnInit {
   async login(){
     let res = await this._LoginService.login(this.loginInfo)
     Cookies.set('current_user_token', 
-    {accessToken:res})
+    {accessToken:res.token});
+    Cookies.set('current_user_info',
+    {
+      userName : res.userName,
+      role : res.role
+    }
+  )
     this.router.navigate(['/main']);
   }
 
-  async register(){
+  register(){
     let config = new MatDialogConfig();
     let dialogRef = this.dialog.open(RegisterDialogComponent,config);     
   }

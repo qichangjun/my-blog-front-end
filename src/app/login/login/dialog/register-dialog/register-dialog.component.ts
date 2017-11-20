@@ -9,7 +9,7 @@ import { LoginService } from '../../login.service';
   styleUrls: ['./register-dialog.component.css']
 })
 export class RegisterDialogComponent implements OnInit {
-  registerInfo = new LoginInfo('','')
+  registerInfo = new LoginInfo()
   constructor(
     public _LoginService : LoginService,
     private MatDialogConfig : MatDialogConfig,

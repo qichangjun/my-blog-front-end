@@ -1,0 +1,29 @@
+<div *ngIf="_AuthService.getCurrentUserInfo().role == 'admin'" style="padding-left: 26px;
+padding-top: 20px;
+padding-bottom: 20px;
+background-color: #fff;
+margin-top: 15px;
+margin: 0 auto;
+width: 87%;
+">
+  <h3>
+    管理社区
+  </h3>
+  <mat-list>
+    <mat-list-item *ngFor="let row of rows">
+      <h3 matLine> 
+        <a [routerLink]="['/main/topic',row._id]">{{row.title}}</a> 
+        <a href="javacript:void(0)" (click)="deleteArticle(row,'full')" >删除</a>
+      </h3>
+    </mat-list-item>
+    <pagination [boundaryLinks]="true" [totalItems]="this.parameter.totalElement" [(ngModel)]="this.parameter.currentPage"
+    class="pagination-sm"
+    [maxSize]="5"
+    [itemsPerPage]="10"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>    
+  </mat-list>
+  <span *ngIf="rows.length == 0">
+    空
+  </span>
+</div>

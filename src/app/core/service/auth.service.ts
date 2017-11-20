@@ -8,7 +8,7 @@ export class AuthService {
   constructor() { }
 
   getCurrentUser() {    
-    return Cookies.getJSON('hs_dmportal_current_user') || {}
+    return Cookies.getJSON('current_user_token') || {}
   }
   
   getCurrentLanguage() {
@@ -16,7 +16,7 @@ export class AuthService {
   }
 
   getCurrentUserInfo(){
-    return Cookies.getJSON('currentUserInfo') || {}
+    return Cookies.getJSON('current_user_info') || {}
   }
 
   getCurrentRole(){

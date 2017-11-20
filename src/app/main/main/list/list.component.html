@@ -1,0 +1,32 @@
+<div style="height: 100%;
+width: 800px;
+margin: 0 auto;
+background-color: #fff;">
+<div style="padding: 15px 15px;">
+    <a [hidden]="parameter.sortField == 'creatDate'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'creatDate',sortWay:-1}" [queryParamsHandling]="'merge'">最新发布</a>
+    <a [hidden]="parameter.sortField == 'replyNum'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'replyNum',sortWay:-1}" [queryParamsHandling]="'merge'">按回复数</a>
+    <a [hidden]="parameter.sortField == 'viewed'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'viewed',sortWay:-1}" [queryParamsHandling]="'merge'">按热度</a>
+    <a [hidden]="parameter.sortField == 'lastReplyTime'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'lastReplyTime',sortWay:-1}" [queryParamsHandling]="'merge'">按最新回复</a>
+</div>
+  <mat-list style="overflow: auto;
+  height: calc(100% - 174px);
+  background-color: #fff;">
+      <mat-list-item *ngFor="let row of rows">
+        <h3 matLine> 
+          <a routerLink="{{'../topic/' + row._id}}">{{row.title}}</a>     
+        </h3>
+        <p matLine> 作者:
+          <a [routerLink]="['/main/user',row.author]">{{row.author}}</a>
+           发布日期:{{row.creatDate}}</p>
+        <p matLine class="demo-2"> 浏览次数:{{row.viewed}} </p>
+      </mat-list-item>
+    </mat-list>
+    <pagination [boundaryLinks]="true" [totalItems]="this.parameter.totalElement" [(ngModel)]="this.parameter.currentPage"
+    class="pagination-sm"
+    [maxSize]="5"
+    [itemsPerPage]="10"
+    (pageChanged)="pageChanged($event)"
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>    
+</div>
+
+

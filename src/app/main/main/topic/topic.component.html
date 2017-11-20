@@ -1,0 +1,116 @@
+<div style="width: 73%;margin: 0 auto;    height: 100%;">
+    <div style="background-color: #fff;
+    overflow: auto;
+    margin-bottom: 10px;
+    padding: 10px 10px;">
+        <h2>{{artInfo.title}}</h2>
+        <div>
+            <span style="padding : 10px 10px;word-wrap: break-word; 
+            white-space: pre-wrap;
+            word-break: normal; " [innerHTML]="artInfo.markDownContent">        
+            </span>
+        </div>
+        <div>
+            <a [routerLink]="['/main/editArticle',artInfo._id]" *ngIf="artInfo.author == _AuthService.getCurrentUserInfo().userName">编辑</a>
+        </div>
+       
+    </div>
+    
+    <div style="background-color: #fff;">
+        <mat-list>
+            <mat-list-item *ngFor="let reply of artInfo.replyList;let i = index" style="margin-bottom: 20px;
+            margin-top: 10px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid black;">            
+            <div matLine 
+            style="padding : 10px 10px;word-wrap: break-word; 
+            white-space: pre-wrap;
+            word-break: normal; "> 
+            <span [innerHTML]="reply.markdownContent"></span>
+        </div>
+            <p matLine class="demo-2"> 
+                <a href="javacript:void(0)" (click)="deleteReply(i,reply)" *ngIf="reply.userName == _AuthService.getCurrentUserInfo().userName">删除</a>
+                <a [routerLink]="['/main/user',reply.userName]">{{reply.userName}} </a>
+                
+                回复时间:{{reply.replyTime}}</p>
+            <p matLine> 
+                <mat-list-item *ngFor="let replyChild of reply.replyChildList" style="
+                width: 72%;
+                margin-bottom: 5px;
+                margin-left: 3%;
+                font-size: 10px;
+                padding-bottom: 10px;
+                padding-top: 10px;
+                padding-left: 15px;
+                background-color: #f6f6f6">            
+                    <p matLine> {{replyChild.content}}</p>
+                    <p matLine class="demo-2"> 
+                    <a [routerLink]="['/main/user',replyChild.userName]">{{replyChild.userName}} </a>                    
+                    回复时间:{{replyChild.replyTime}}</p>
+                </mat-list-item>                
+            </p>
+            <p matLine>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            回复
+                        </mat-panel-title>
+                        
+                    </mat-expansion-panel-header>
+                    
+                    <mat-form-field style="width: 80%;">
+                        <textarea
+                        style="height: 200px;"
+                            matInput name="content" [(ngModel)]="replyChildInfo.content" placeholder="内容"></textarea>
+                    </mat-form-field>
+                    <button type="button" (click)="addChildReply(reply._id)" mat-button >回复</button>   
+                    
+                    </mat-expansion-panel>
+        
+            </p>
+            </mat-list-item>
+        </mat-list>
+    </div>
+
+    <div style="background: #fff;
+    padding: 10px 10px;">
+        <h3>添加回复</h3>
+        <app-edit-toolbar 
+        (getImgUrl)="getImgUrl($event)"
+        >
+        </app-edit-toolbar >   
+        <form (ngSubmit)="addReply()" #addReplyForm="ngForm">
+            <mat-form-field style="width:100%">
+                <textarea
+                (keyup)="markDown($event)"
+                required
+                style="height: 200px;"
+                matInput name="content" [(ngModel)]="replyInfo.content" placeholder="内容"></textarea>
+            </mat-form-field>        
+            <button [disabled]="!replyInfo.content" type="submit" mat-button >回复</button>        
+            <div style="min-height: 100px;
+            padding: 10px 10px;
+            border-top: 1px dotted #c8ccd0;
+            margin-bottom: 50px;
+            max-width: 100%;
+            overflow:auto;">
+            <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                                预览
+                        </mat-panel-title>
+                        
+                    </mat-expansion-panel-header>
+                    
+               
+                    <span [innerHTML]="replyInfo.MarkdownContent"></span>
+                            
+                    
+            </mat-expansion-panel>
+                <!-- <h3>预览</h3> -->
+                <!-- <span [innerHTML]="replyInfo.MarkdownContent"></span> -->
+            </div>
+            
+        </form>
+    </div>
+</div>

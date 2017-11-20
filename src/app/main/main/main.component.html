@@ -1,4 +1,21 @@
-<a  [routerLink]="['/login']">登出</a>
-<p>
-  main works!
-</p>
+
+
+<mat-toolbar style="background:#444">
+    <div style="right: 0px;
+    position: absolute;
+    font-size: 15px;" class="toolBar">
+        <a style="margin-right:10px;" *ngIf="_AuthService.getCurrentUserInfo().role == 'admin'" [routerLink]="['/main/blogManage']">管理社区</a>
+        <a style="margin-right:10px;" [routerLink]="['/main']">首页</a>
+        <a style="margin-right:10px;" [routerLink]="['/main/createArt']">发表文章</a>
+        <a style="margin-right:10px;" [routerLink]="['/main/user',_AuthService.getCurrentUserInfo().userName]">个人设置</a>
+        <a style="margin-right:10px;" [routerLink]="['/login']">登出</a>
+    </div>       
+</mat-toolbar>
+
+
+
+
+
+<div style="height:94%;overflow:auto;background: linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);">
+    <router-outlet></router-outlet>
+</div>

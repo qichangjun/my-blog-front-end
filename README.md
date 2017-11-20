@@ -1,27 +1,39 @@
-# TestNg
+# 小七博客
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
+ 博客访问地址 : [http://116.62.227.214](http://116.62.227.214).
 
-## Development server
+## 本地启动 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+ `git-clone http://**` <br>
 
-## Code scaffolding
+ `npm install ` -- 安装依赖包<br>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+ `ng serve` --启动服务<br>
 
-## Build
+ 访问`locathost://4200` 
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## 正式环境打包
 
-## Running unit tests
+输入 `ng build --prod --base-href ./` 其中`--prod` 表示打包环境,`--base-href`表示项目路径
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 前端框架
 
-## Running end-to-end tests
+`angular@5.0.0` <br>
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+`angular-cli@1.5.0` <br>
 
-## Further help
+`bootstrap` <br>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+`angular materal` <br>
+
+... <br>
+
+详细见`package.json`文件
+
+## 功能概述
+
+ **登陆注册** <br>
+ **发表，编辑，删除文章** <br>
+ **个人管理，管理员的平台管理** <br>
+ **图片上传** <br>
+ **markdown格式在线预览** <br>

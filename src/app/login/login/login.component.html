@@ -1,18 +1,38 @@
 
+<div class="htmleaf-container">
 
-
-<div class="example-container">
-    <form (ngSubmit)="login()" #loginForm="ngForm">
-        <mat-form-field>
-            <input type="text" name="userName" required matInput [(ngModel)]="loginInfo.userName" placeholder="用户名">
-          </mat-form-field>
+      <div class="wrapper">
+        <div class="container">
+          <h1>Welcome</h1>
+          
+          <form (ngSubmit)="loginForm.form.valid && login()" #loginForm="ngForm" class="form">
+              <input [ngClass]="{ 'has-error': loginForm.submitted && !userName.valid }" #userName="ngModel" type="text" name="userName" [required]="true" [(ngModel)]="loginInfo.userName" placeholder="用户名">
+              <div>
+                  <span style="color:red" *ngIf="loginForm.submitted && !userName.valid">请填写用户名</span>
+              </div>                            
+              <input [ngClass]="{ 'has-error': loginForm.submitted && !password.valid }" #password="ngModel" type="password" [required]="true" name="password" [(ngModel)]="loginInfo.password" placeholder="密码">
+              <div>
+                  <span style="color:red" *ngIf="loginForm.submitted && !password.valid">请填写密码</span>
+              </div>     
+              <div style="margin-bottom: 15px;">
+                  <button type="submit" [disabled]="!loginForm.form.valid" mat-button id="login-button">登录</button>
+              </div>         
+              
+              <button type="button" mat-button (click)="register()">注册</button>
+          </form>
+        </div>
         
-          <mat-form-field>
-            <input type="password" name="password" required matInput [(ngModel)]="loginInfo.password" placeholder="用户名">
-          </mat-form-field>
-  
-          <button type="submit" mat-button >登录</button>
-          <button type="button" mat-button (click)="register()">注册</button>
-    </form>
-  
-  </div>
+        <ul class="bg-bubbles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>

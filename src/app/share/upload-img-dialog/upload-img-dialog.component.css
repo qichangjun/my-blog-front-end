@@ -1,0 +1,7 @@
+#uploadContainer{
+    height: 50px;
+    padding: 60px 0px;
+    text-align: center;
+    border: 4px dashed rgb(221, 221, 221);
+    cursor: pointer;
+}

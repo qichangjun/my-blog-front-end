@@ -23,11 +23,17 @@
     "@angular/platform-browser": "^5.0.0",
     "@angular/platform-browser-dynamic": "^5.0.0",
     "@angular/router": "^5.0.0",
+    "bootstrap": "^3.3.7",
     "core-js": "^2.4.1",
+    "dropzone": "^5.2.0",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "js-cookie": "^2.2.0",
+    "marked": "^0.3.6",
+    "ngx-bootstrap": "^2.0.0-beta.8",
     "rxjs": "^5.5.2",
     "toastr": "^2.1.2",
+    "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {

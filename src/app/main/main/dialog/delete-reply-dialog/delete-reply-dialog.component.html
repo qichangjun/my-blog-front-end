@@ -1,0 +1,11 @@
+<form (ngSubmit)="deleteReply()" #createArticleForm="ngForm">
+    <h2 mat-dialog-title>删除评论</h2>
+    <span>
+      确定要删除该条评论吗
+    </span>
+    
+    <mat-dialog-actions>
+      <button type="submit" mat-button >删除</button>
+      <button type="button" mat-button (click)="cancel()">取消</button>
+    </mat-dialog-actions>
+  </form>

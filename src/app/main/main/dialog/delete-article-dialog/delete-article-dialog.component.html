@@ -1,0 +1,11 @@
+<form (ngSubmit)="deleteArticle()" #createArticleForm="ngForm">
+    <h2 mat-dialog-title>删除文章</h2>
+    <span>
+      确定要删除标题为{{data.row.title}}的文章吗
+    </span>
+    
+    <mat-dialog-actions>
+      <button type="submit" mat-button >删除</button>
+      <button type="button" mat-button (click)="cancel()">取消</button>
+    </mat-dialog-actions>
+  </form>

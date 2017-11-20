@@ -1,0 +1,45 @@
+<div style=" height: 100%;
+overflow: auto;">
+
+<mat-list style="background-color: #fff;
+padding: 10px 10px;    margin: 0 auto;
+width: 87%;">
+  <mat-list-item>
+    <p matLine style="margin-bottom: 20px;
+    margin-top: 50px;"> {{userInfo.userName}}</p>
+    <p matLine> email:{{userInfo.email}}</p>
+
+    <p matLine> 角色:{{userInfo.role == 'admin' ? '管理员' : '普通用户'}}</p>
+    <p matLine class="demo-2"> 注册时间:{{userInfo.registerTime | date: 'yyyy-MM-dd'}} </p>
+  </mat-list-item>
+</mat-list>
+
+<div style="padding-left: 26px;
+padding-top: 20px;
+padding-bottom: 20px;
+background-color: #fff;
+margin-top: 15px;
+margin: 0 auto;
+width: 87%;
+max-height:500px;
+overflow:auto;
+">
+  <h3>
+    最近发布的话题
+  </h3>
+  <mat-list>
+    <mat-list-item *ngFor="let row of rows">
+      <h3 matLine> 
+        <a [routerLink]="['/main/topic',row._id]">{{row.title}}</a> 
+        <a href="javacript:void(0)" (click)="deleteArticle(row,'own')" *ngIf="row.author == _AuthService.getCurrentUserInfo().userName">删除</a>
+      </h3>
+    </mat-list-item>
+  </mat-list>
+  <span *ngIf="rows.length == 0">
+    空
+  </span>
+</div>
+
+
+
+</div>

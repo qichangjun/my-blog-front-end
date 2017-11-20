@@ -1,0 +1,63 @@
+<div style=" height: 100%;
+overflow: auto;">
+
+<div style="background: #f6f6f6;
+
+height: 50px;
+line-height: 50px;
+padding-left: 15px;
+width: 87%;
+margin:0 auto;
+padding-right: 15px;">
+  <span>
+    <a [routerLink]="['/main']">主页</a>
+    / 发布话题</span>    
+</div>
+<div style="background: #fff;
+padding-left: 15px;padding-bottom: 100px;
+width: 87%;padding-top:15px;
+margin:0 auto;
+padding-right: 15px;">
+  <form (ngSubmit)="createArticle()" #createArticleForm="ngForm">
+    <h2 >发表文章</h2>
+    <div>
+      
+        <mat-form-field style="width:100%">
+          <input type="text" name="userName" required matInput [(ngModel)]="artInfo.title" placeholder="标题 字数10以上">
+        </mat-form-field>
+        
+        <mat-form-field style="width:100%">
+            <app-edit-toolbar 
+            (getImgUrl)="getImgUrl($event)"
+            >
+            </app-edit-toolbar >   
+            <textarea
+            (keyup)="markDown($event)"
+            style="height: 400px;padding: 10px 10px;
+            border: 2px solid gray;
+            border-radius: 6px;"
+             matInput name="content" [(ngModel)]="artInfo.content" ></textarea>
+        </mat-form-field>
+        <div style="min-height: 100px;
+        padding: 10px 10px;
+        border-top: 1px dotted #c8ccd0;
+        margin-bottom: 50px;
+        max-width: 100%;
+        overflow:auto;">
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+              <mat-panel-title>
+                      预览
+              </mat-panel-title>       
+          </mat-expansion-panel-header>
+          <span [innerHTML]="artInfo.MarkdownContent"></span>         
+        </mat-expansion-panel>
+        </div>
+    </div>
+    <mat-dialog-actions>
+      <button type="submit" mat-button >提交</button>    
+    </mat-dialog-actions>
+  </form>
+</div>
+
+</div>
