@@ -21,4 +21,7 @@ export class ApiUrlService {
 
   uploadImg = '/api/upload/uploadImg'
 
+
+  getLabelLists = '/api/label/getLabelLists'
+  addLabel = '/api/label/addLabel'
 }

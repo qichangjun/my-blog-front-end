@@ -15,7 +15,8 @@ export class CreateArtComponent implements OnInit {
   artInfo = {
     title : null,
     content : null,
-    MarkdownContent : null
+    MarkdownContent : null,
+    label : []
   }
   constructor(
     private route: ActivatedRoute,
@@ -51,4 +52,7 @@ export class CreateArtComponent implements OnInit {
     })
   }
 
+  addLabel(event){
+    this.artInfo.label = event.chips
+  }
 }

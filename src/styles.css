@@ -9,3 +9,9 @@ html{
 body{
     height: 100%;
 }
+
+button{ outline:none; }
+
+.mat-autocomplete-panel{
+    width:500px;
+}

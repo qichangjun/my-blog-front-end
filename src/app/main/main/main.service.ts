@@ -94,4 +94,36 @@ export class MainService {
                       this._ServiceHandleService.handleError(error)
                     );
   }
+
+  getLabelLists(value?) : Promise<any> {        
+    let params = new URLSearchParams();
+    let post_data = {
+      token : this._AuthService.getCurrentUser().accessToken,
+      keyword : value
+    }    
+    return this.http.post(this._constantService.baseUrl() + this._apiUrlService['getLabelLists'],post_data,{search:params})
+                    .toPromise()
+                    .then(res =>
+                      this._ServiceHandleService.extractData(res)
+                    )
+                    .catch(error =>
+                      this._ServiceHandleService.handleError(error)
+                    );
+  }
+
+  addLabel(value) : Promise<any> {        
+    let params = new URLSearchParams();
+    let post_data = {
+      token : this._AuthService.getCurrentUser().accessToken,
+      label : value
+    }    
+    return this.http.post(this._constantService.baseUrl() + this._apiUrlService['addLabel'],post_data,{search:params})
+                    .toPromise()
+                    .then(res =>
+                      this._ServiceHandleService.extractData(res)
+                    )
+                    .catch(error =>
+                      this._ServiceHandleService.handleError(error)
+                    );
+  }
 }

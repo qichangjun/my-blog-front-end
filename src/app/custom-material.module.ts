@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCheckboxModule,
   MatDialogModule,MatDialogConfig,MatFormFieldModule,
   MatInputModule,MatSelectModule,MatListModule,MatExpansionModule,
-  MatToolbarModule
+  MatToolbarModule,MatAutocompleteModule,MatChipsModule
 } from '@angular/material';
 
 @NgModule({
   imports: [    
+    MatChipsModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,
@@ -17,6 +19,8 @@ import { MatButtonModule, MatCheckboxModule,
     MatToolbarModule
   ],
   exports:[
+    MatChipsModule,
+    MatAutocompleteModule,
     MatButtonModule,
     MatCheckboxModule,
     MatDialogModule,

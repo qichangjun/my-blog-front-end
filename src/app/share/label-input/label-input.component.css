@@ -1,0 +1,52 @@
+.demo-chip-list {
+    width: 100%;
+  }
+
+
+.label-input{
+  border: none;
+  padding: 0px 0px;
+  width: 100px;
+  height: 100%;
+  float: left;
+  box-shadow: none;
+  margin-left: 5px;
+  text-overflow: ellipsis;
+}
+
+.chip{
+  float: left;
+  line-height: 24px;
+  display: inline-flex;
+  -webkit-box-align: center;
+  align-items: center;
+  padding-left: 0.8em;
+  margin: 0.4em 0.4em 0 0;
+  background-color: #f1f8ff;
+  border-radius: 3px;
+  font-size: 14px !important;
+  
+}
+
+.delete-topic-button:hover {
+  background-color: #ddeeff;
+}
+
+.delete-topic-button {
+  margin-left: 9px;
+  display: inline-block;
+  width: 26px;
+  color: #6a737d;
+  background-color: #f1f8ff;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 0;
+  border-left: 1px solid #b4d9ff;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+
+.no-underline {
+  text-decoration: none !important;
+}

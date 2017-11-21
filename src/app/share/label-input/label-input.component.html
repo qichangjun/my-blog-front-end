@@ -1,0 +1,19 @@
+<form #f="ngForm" style="width:80%;height:50px;" (ngSubmit)="f.form.valid && addChip()">
+  <div class="form-control" style="padding: 0px 0px;float: left;width:100%;height:40px;" (click)="labelSearch.focus()">
+    <div class="chip" *ngFor="let chip of chips;let i = index">
+        {{chip}}
+      <button type="button" class="delete-topic-button f5 no-underline ml-2 js-remove" tabindex="-1" (click)="deleteChip(i)">
+          ×
+      </button>
+    </div>
+      <input [formControl]="searchControl" [matAutocomplete]="auto" 
+      name="labelSearch" #labelSearch type="text" class="form-control label-input" 
+      [(ngModel)]="labelInput" autocomplete="off">
+      <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of options" [value]="option.name">
+            {{ option.name }}
+          </mat-option>
+      </mat-autocomplete>
+  </div>  
+    
+</form>

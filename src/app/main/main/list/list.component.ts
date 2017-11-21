@@ -15,12 +15,15 @@ import { CreateArticleDialogComponent } from '../dialog/create-article-dialog/cr
 })
 export class ListComponent implements OnInit {
   rows : Array<any> = [];
+  inputModel : boolean = false;
   parameter = {
     currentPage : 1,
     pageSize : 10,
     sortField : 'lastReplyTime',
-    totalElement : 1
+    totalElement : 1,
+    labels : []
   }
+  labelLists : Array<any> = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -33,11 +36,15 @@ export class ListComponent implements OnInit {
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
       this.parameter = Object.assign(this.parameter,params)
+      
       this.parameter.currentPage = Number(this.parameter.currentPage)
+      if (this.parameter.labels && typeof(this.parameter.labels) == 'string'){
+        this.parameter.labels = [this.parameter.labels]
+      }
       this.getArticleLists()
     })    
   }
-
+  
   async getArticleLists(){
     let res = await this._MainService.getArticleLists(this.parameter)
     this.rows = res.data
@@ -47,6 +54,11 @@ export class ListComponent implements OnInit {
   pageChanged(e){
     this.parameter.currentPage = e.page
     this.router.navigate([], { queryParams: this.parameter });
+  }
+
+  addLabel(e){
+    this.parameter.labels = e.chips
+    this.getArticleLists()
   }
 
   createArticle(){
