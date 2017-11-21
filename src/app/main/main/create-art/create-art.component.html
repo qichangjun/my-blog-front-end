@@ -23,7 +23,7 @@ padding-right: 15px;">
     <div>
         <div>
           <span>选择标签</span>
-          <app-label-input (addLabel)="addLabel($event)"></app-label-input>    
+          <app-label-input [chips]="chips" (addLabel)="addLabel($event)"></app-label-input>    
         </div>        
         <mat-form-field style="width:100%">
           <input type="text" name="userName" required matInput [(ngModel)]="artInfo.title" placeholder="标题 字数10以上">

@@ -18,7 +18,8 @@ export class EditArticleComponent implements OnInit {
   artInfo = {
     title : null,
     content : null,
-    markDownContent : null
+    markDownContent : null,
+    label : []
   }
   parameter = {
     id : null
@@ -66,4 +67,7 @@ export class EditArticleComponent implements OnInit {
     })
   }
 
+  addLabel(event){
+    this.artInfo.label = event.chips
+  }
 }

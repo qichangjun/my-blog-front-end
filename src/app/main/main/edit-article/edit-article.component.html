@@ -19,7 +19,10 @@ padding-right: 15px;">
   <form (ngSubmit)="editArticle()" #editArticleForm="ngForm">
     <h2 >编辑文章</h2>
     <div>
-      
+        <div>
+            <span>选择标签</span>
+            <app-label-input [chips]="artInfo.label" (addLabel)="addLabel($event)"></app-label-input>    
+          </div>  
         <mat-form-field style="width:100%">
           <input type="text" name="userName" required matInput [(ngModel)]="artInfo.title" placeholder="标题 字数10以上">
         </mat-form-field>

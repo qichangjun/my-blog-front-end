@@ -18,6 +18,7 @@ export class CreateArtComponent implements OnInit {
     MarkdownContent : null,
     label : []
   }
+  chips : Array<any> = [];
   constructor(
     private route: ActivatedRoute,
     private router: Router,
