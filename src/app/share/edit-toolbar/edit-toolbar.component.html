@@ -23,11 +23,11 @@
         <mat-tab label="Tab 1"> 
           <textarea
           (keyup)="markDown($event)"
-            style="height: 400px;padding: 10px 10px;width:100%;"
+            style="min-height: 200px;padding: 10px 10px;width:100%;"
            matInput  [(ngModel)]="artInfo.content" ></textarea>
         </mat-tab>
         <mat-tab label="Tab 2">
-          <div style="height:400px;width:100%;background: #f9f9f5;">            
+          <div style="min-height: 200px;width:100%;background: #f9f9f5;">            
               <span [innerHTML]="artInfo.MarkdownContent"></span>
           </div>            
         </mat-tab>

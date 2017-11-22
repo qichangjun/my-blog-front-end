@@ -13,9 +13,7 @@ background-color: #fff;">
    
     <div *ngIf="inputModel" style="margin-bottom:0.5em">        
         <app-label-input [chips]="parameter.labels"  (addLabel)="addLabel($event)"></app-label-input> 
-        <button style="position: absolute;
-        right: 125px;
-        top: 79px;" mat-raised-button (click)="inputModel=false">退出编辑</button>   
+        <button  mat-raised-button (click)="inputModel=false">退出编辑</button>   
     </div>    
     <a [hidden]="parameter.sortField == 'creatDate'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'creatDate',sortWay:-1}" [queryParamsHandling]="'merge'">最新发布</a>
     <a [hidden]="parameter.sortField == 'replyNum'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'replyNum',sortWay:-1}" [queryParamsHandling]="'merge'">按回复数</a>
