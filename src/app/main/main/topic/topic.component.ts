@@ -48,12 +48,6 @@ export class TopicComponent implements OnInit {
     })
   }
 
-  markDown(e){
-    marked(e.target.value,(err,content)=>{      
-      this.replyInfo['MarkdownContent'] = content
-    })
-    
-  }
 
   async getArtInfo(){
     this.artInfo = await this._TopicService.getArticleDetail(this.parameters)
@@ -89,14 +83,6 @@ export class TopicComponent implements OnInit {
       }
     })
   }
-
-  getImgUrl(event){    
-    this.replyInfo['content'] = (this.replyInfo['content'] || '') + `![${event.imgKey}](${event.imgPath})`
-    marked(this.replyInfo['content'],(err,content)=>{      
-      this.replyInfo['MarkdownContent'] = content
-    })
-  }
-
 }
 
 

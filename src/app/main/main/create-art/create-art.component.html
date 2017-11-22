@@ -29,33 +29,12 @@ padding-right: 15px;">
           <input type="text" name="userName" required matInput [(ngModel)]="artInfo.title" placeholder="标题 字数10以上">
         </mat-form-field>
         
-        <mat-form-field style="width:100%">
+        <div style="width:100%">
             <app-edit-toolbar 
-            (getImgUrl)="getImgUrl($event)"
+            [artInfo]="artInfo"
             >
             </app-edit-toolbar >   
-            <textarea
-            (keyup)="markDown($event)"
-            style="height: 400px;padding: 10px 10px;
-            border: 2px solid gray;
-            border-radius: 6px;"
-             matInput name="content" [(ngModel)]="artInfo.content" ></textarea>
-        </mat-form-field>
-        <div style="min-height: 100px;
-        padding: 10px 10px;
-        border-top: 1px dotted #c8ccd0;
-        margin-bottom: 50px;
-        max-width: 100%;
-        overflow:auto;">
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-              <mat-panel-title>
-                      预览
-              </mat-panel-title>       
-          </mat-expansion-panel-header>
-          <span [innerHTML]="artInfo.MarkdownContent"></span>         
-        </mat-expansion-panel>
-        </div>
+        </div>        
     </div>
     <mat-dialog-actions>
       <button type="submit" mat-button >提交</button>    

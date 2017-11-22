@@ -15,3 +15,7 @@ button{ outline:none; }
 .mat-autocomplete-panel{
     width:500px;
 }
+
+.editContent .mat-tab-header {
+    display: none !important
+}

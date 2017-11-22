@@ -61,7 +61,7 @@
                     <mat-form-field style="width: 80%;">
                         <textarea
                         style="height: 200px;"
-                            matInput name="content" [(ngModel)]="replyChildInfo.content" placeholder="内容"></textarea>
+                            matInput name="content" [(ngModel)]="replyChildInfo.content" ></textarea>
                     </mat-form-field>
                     <button type="button" (click)="addChildReply(reply._id)" mat-button >回复</button>   
                     
@@ -75,42 +75,15 @@
     <div style="background: #fff;
     padding: 10px 10px;">
         <h3>添加回复</h3>
-        <app-edit-toolbar 
-        (getImgUrl)="getImgUrl($event)"
-        >
-        </app-edit-toolbar >   
+       
         <form (ngSubmit)="addReply()" #addReplyForm="ngForm">
-            <mat-form-field style="width:100%">
-                <textarea
-                (keyup)="markDown($event)"
-                required
-                style="height: 200px;"
-                matInput name="content" [(ngModel)]="replyInfo.content" placeholder="内容"></textarea>
-            </mat-form-field>        
-            <button [disabled]="!replyInfo.content" type="submit" mat-button >回复</button>        
-            <div style="min-height: 100px;
-            padding: 10px 10px;
-            border-top: 1px dotted #c8ccd0;
-            margin-bottom: 50px;
-            max-width: 100%;
-            overflow:auto;">
-            <mat-expansion-panel>
-                    <mat-expansion-panel-header>
-                        <mat-panel-title>
-                                预览
-                        </mat-panel-title>
-                        
-                    </mat-expansion-panel-header>
-                    
-               
-                    <span [innerHTML]="replyInfo.MarkdownContent"></span>
-                            
-                    
-            </mat-expansion-panel>
-                <!-- <h3>预览</h3> -->
-                <!-- <span [innerHTML]="replyInfo.MarkdownContent"></span> -->
-            </div>
-            
+            <div style="width:100%">
+                <app-edit-toolbar 
+                [artInfo]="replyInfo"
+                >
+                </app-edit-toolbar >   
+            </div>     
+            <button [disabled]="!replyInfo.content" type="submit" mat-button >回复</button>                               
         </form>
     </div>
 </div>

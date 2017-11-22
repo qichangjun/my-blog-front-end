@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { MatButtonModule, MatCheckboxModule,
   MatDialogModule,MatDialogConfig,MatFormFieldModule,
   MatInputModule,MatSelectModule,MatListModule,MatExpansionModule,
-  MatToolbarModule,MatAutocompleteModule,MatChipsModule
+  MatToolbarModule,MatAutocompleteModule,MatChipsModule,MatTabsModule
 } from '@angular/material';
 
 @NgModule({
@@ -16,7 +16,8 @@ import { MatButtonModule, MatCheckboxModule,
     MatSelectModule,
     MatListModule,
     MatExpansionModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule
   ],
   exports:[
     MatChipsModule,
@@ -29,7 +30,8 @@ import { MatButtonModule, MatCheckboxModule,
     MatSelectModule,
     MatListModule,
     MatExpansionModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatTabsModule
   ],
   declarations: [],
   providers:[MatDialogConfig]

@@ -18,7 +18,7 @@ export class EditArticleComponent implements OnInit {
   artInfo = {
     title : null,
     content : null,
-    markDownContent : null,
+    MarkDownContent : null,
     label : []
   }
   parameter = {
@@ -40,8 +40,8 @@ export class EditArticleComponent implements OnInit {
   }
 
   async getArtInfo(){
-    this.artInfo = await this._TopicService.getArticleDetail(this.parameter)
-    this.artInfo['markDownContent'] = marked(this.artInfo['content'])
+    this.artInfo = await this._TopicService.getArticleDetail(this.parameter)    
+    this.artInfo['MarkDownContent'] = marked(this.artInfo['content'])
   }
 
   async editArticle(){
@@ -51,20 +51,6 @@ export class EditArticleComponent implements OnInit {
     }catch(e){
       return 
     }        
-  }
-
-  markDown(e){
-    marked(e.target.value,(err,content)=>{      
-      this.artInfo['markDownContent'] = content
-    })
-    
-  }
-
-  getImgUrl(event){    
-    this.artInfo['content'] = (this.artInfo['content'] || '') + `![${event.imgKey}](${event.imgPath})`    
-    marked(this.artInfo['content'],(err,content)=>{      
-      this.artInfo['markDownContent'] = content
-    })
   }
 
   addLabel(event){
