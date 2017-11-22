@@ -40,8 +40,10 @@ export class EditArticleComponent implements OnInit {
   }
 
   async getArtInfo(){
-    this.artInfo = await this._TopicService.getArticleDetail(this.parameter)    
-    this.artInfo['MarkDownContent'] = marked(this.artInfo['content'])
+    this.artInfo = await this._TopicService.getArticleDetail(this.parameter)        
+    marked(this.artInfo['content'],(err,content)=>{            
+      this.artInfo['MarkdownContent'] = content
+    })
   }
 
   async editArticle(){

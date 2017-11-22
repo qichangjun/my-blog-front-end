@@ -12,6 +12,7 @@ import { LabelInputComponent } from './label-input/label-input.component';
 
 import {SelectModule} from 'ng2-select';
 import { MainService } from '../main/main/main.service';
+import { AddLinkDialogComponent } from './add-link-dialog/add-link-dialog.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -29,10 +30,11 @@ import { MainService } from '../main/main/main.service';
     CustomMaterialModule,
     EditToolbarComponent,
     UploadImgDialogComponent,
-    LabelInputComponent
+    LabelInputComponent,
+    AddLinkDialogComponent
   ],
   providers:[PaginationConfig,MainService],
-  declarations: [EditToolbarComponent, UploadImgDialogComponent, LabelInputComponent],
-  entryComponents:[UploadImgDialogComponent]
+  declarations: [EditToolbarComponent, UploadImgDialogComponent, LabelInputComponent,AddLinkDialogComponent],
+  entryComponents:[UploadImgDialogComponent,AddLinkDialogComponent]
 })
 export class ShareModule { }

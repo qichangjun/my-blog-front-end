@@ -2,16 +2,17 @@
 
 <div class="toolBar">
   
-    <a (click)="uploadImg()" style="cursor:pointer" class="tool-icon">
+    <a (click)="uploadImg()" style="cursor:pointer" class="tool-icon" >
         <i class="fa fa-picture-o" aria-hidden="true"></i>
-    </a>
-  
-    <a href="http://lab.lepture.com/editor/markdown" target="_blank" class="tool-icon">
-      <i class="fa fa-info-circle" aria-hidden="true"></i>
+      </a>
+    <a (click)="addLink()" style="cursor:pointer" class="tool-icon">
+        <i class="fa fa-link" aria-hidden="true"></i>
     </a>
   
     <i class="separator">|</i>
-  
+    <a href="http://lab.lepture.com/editor/markdown" target="_blank" class="tool-icon">
+      <i class="fa fa-info-circle" aria-hidden="true"></i>
+    </a>       
     <a (click)="switchMode()" style="cursor:pointer" class="tool-icon" [ngClass]="{isActive:currentTab==1}">
       <i class="fa fa-eye" aria-hidden="true"></i>
     </a>
@@ -26,7 +27,7 @@
            matInput  [(ngModel)]="artInfo.content" ></textarea>
         </mat-tab>
         <mat-tab label="Tab 2">
-          <div style="height:400px;width:100%">            
+          <div style="height:400px;width:100%;background: #f9f9f5;">            
               <span [innerHTML]="artInfo.MarkdownContent"></span>
           </div>            
         </mat-tab>

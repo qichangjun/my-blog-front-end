@@ -3,7 +3,7 @@ import { Component, OnInit ,EventEmitter,Output,Input} from '@angular/core';
 import { MatDialog, MatDialogRef,MatDialogConfig } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { UploadImgDialogComponent } from '../upload-img-dialog/upload-img-dialog.component';
-
+import { AddLinkDialogComponent } from '../add-link-dialog/add-link-dialog.component';
 declare var marked:any;
 @Component({
   selector: 'app-edit-toolbar',
@@ -28,6 +28,21 @@ export class EditToolbarComponent implements OnInit {
     dialogRef.afterClosed().subscribe((res) =>{
       if (res){
         this.artInfo['content'] = (this.artInfo['content'] || '') + `![${res.imgKey}](${res.imgPath})`    
+        marked(this.artInfo['content'],(err,content)=>{      
+          this.artInfo['MarkdownContent'] = content
+        })
+      }
+    })
+  }
+
+  addLink(){
+    let config = new MatDialogConfig();    
+    config.height = 'auto';
+    config.width = '600px';
+    let dialogRef = this.dialog.open(AddLinkDialogComponent,config);
+    dialogRef.afterClosed().subscribe((res) =>{
+      if (res){
+        this.artInfo['content'] = (this.artInfo['content'] || '') + `[${res.title}](${res.link})`    
         marked(this.artInfo['content'],(err,content)=>{      
           this.artInfo['MarkdownContent'] = content
         })
