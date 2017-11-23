@@ -3,7 +3,16 @@
     display: block;
     height: 100%;
 }
-
+.message-list{
+    text-overflow: ellipsis;
+    text-align: center;
+    padding: 0px 15px;
+    width: 175px;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+    border-bottom: 1px solid #f0f0f0;
+}
 .toolBar a {
     color:white;
     opacity: 0.6;

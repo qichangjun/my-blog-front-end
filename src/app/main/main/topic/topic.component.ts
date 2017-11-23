@@ -60,8 +60,9 @@ export class TopicComponent implements OnInit {
   }
 
   async addReply(){
-    await this._TopicService.addReply(this.parameters.id,this.replyInfo)
+    await this._TopicService.addReply(this.parameters.id,this.replyInfo)    
     this.getArtInfo()
+
   }
 
   async addChildReply(id){

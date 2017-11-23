@@ -34,4 +34,18 @@ export class UserService {
                       this._ServiceHandleService.handleError(error)
                     );
   }
+
+  deleteMessage(id) : Promise<any> {    
+    let params = new URLSearchParams();
+    params.set('id',id)    
+    params.set('token',this._AuthService.getCurrentUser().accessToken)    
+    return this.http.get(this._constantService.baseUrl() + this._apiUrlService['deleteMessage'],{search:params})
+                    .toPromise()
+                    .then(res =>
+                      this._ServiceHandleService.extractData(res)
+                    )
+                    .catch(error =>
+                      this._ServiceHandleService.handleError(error)
+                    );
+  }
 }

@@ -24,4 +24,5 @@ export class ApiUrlService {
 
   getLabelLists = '/api/label/getLabelLists'
   addLabel = '/api/label/addLabel'
+  deleteMessage = '/api/art/deleteMessage'
 }
