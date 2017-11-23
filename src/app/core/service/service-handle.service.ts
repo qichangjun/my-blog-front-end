@@ -15,7 +15,9 @@ export class ServiceHandleService {
 
   public handleError(error: any): Promise<any> {
     // toastr.error('链接失败')     
+
     return Promise.reject(error.message || error);
+
   }
 
   public extractData(res: Response) {
@@ -23,7 +25,7 @@ export class ServiceHandleService {
     if (body.code == 1){
       return body.data || { };
     }else{
-      if (body.message == '用户认证失败'){
+      if (body.message == '用户不存在'){
         this.router.navigate(['/login']);
       }
       toastr.error(body.message)      
@@ -37,7 +39,7 @@ export class ServiceHandleService {
       toastr.success(body.message)
       return body.data || { };
     }else{        
-      if (body.message == '用户认证失败'){
+      if (body.message == '用户不存在'){
         this.router.navigate(['/login']);
       }    
       toastr.error(body.data,body.message)    
