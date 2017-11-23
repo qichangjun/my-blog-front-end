@@ -13,6 +13,7 @@ import { LabelInputComponent } from './label-input/label-input.component';
 import {SelectModule} from 'ng2-select';
 import { MainService } from '../main/main/main.service';
 import { AddLinkDialogComponent } from './add-link-dialog/add-link-dialog.component';
+import { AdvertisingComponent } from './advertising/advertising.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -31,10 +32,11 @@ import { AddLinkDialogComponent } from './add-link-dialog/add-link-dialog.compon
     EditToolbarComponent,
     UploadImgDialogComponent,
     LabelInputComponent,
-    AddLinkDialogComponent
+    AddLinkDialogComponent,
+    AdvertisingComponent
   ],
   providers:[PaginationConfig,MainService],
-  declarations: [EditToolbarComponent, UploadImgDialogComponent, LabelInputComponent,AddLinkDialogComponent],
+  declarations: [EditToolbarComponent, UploadImgDialogComponent, LabelInputComponent,AddLinkDialogComponent, AdvertisingComponent],
   entryComponents:[UploadImgDialogComponent,AddLinkDialogComponent]
 })
 export class ShareModule { }

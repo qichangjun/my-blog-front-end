@@ -3,11 +3,12 @@ import { MatButtonModule, MatCheckboxModule,
   MatDialogModule,MatDialogConfig,MatFormFieldModule,
   MatInputModule,MatSelectModule,MatListModule,MatExpansionModule,
   MatToolbarModule,MatAutocompleteModule,MatChipsModule,MatTabsModule,
-  MatMenuModule,MatTooltipModule
+  MatMenuModule,MatTooltipModule,MatCardModule
 } from '@angular/material';
 
 @NgModule({
   imports: [    
+    MatCardModule,
     MatTooltipModule,
     MatMenuModule,
     MatChipsModule,
@@ -23,6 +24,7 @@ import { MatButtonModule, MatCheckboxModule,
     MatTabsModule
   ],
   exports:[
+    MatCardModule,
     MatTooltipModule,
     MatMenuModule,
     MatChipsModule,

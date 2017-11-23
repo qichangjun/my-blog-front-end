@@ -7,6 +7,7 @@
       </button>
     </div>
       <input [formControl]="searchControl" [matAutocomplete]="auto" 
+      placeholder="选个标签吧"
       name="labelSearch" #labelSearch type="text" class="form-control label-input" 
       [(ngModel)]="labelInput" autocomplete="off">
       <mat-autocomplete #auto="matAutocomplete">

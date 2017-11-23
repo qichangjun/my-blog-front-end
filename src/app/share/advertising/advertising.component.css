@@ -1,0 +1,7 @@
+.ad-card{
+    min-width: 300px;
+    position: absolute;
+    z-index: 99;
+    bottom: 0;
+    width: 30%;
+}

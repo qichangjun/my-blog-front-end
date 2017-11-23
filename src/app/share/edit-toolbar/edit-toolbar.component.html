@@ -2,18 +2,18 @@
 
 <div class="toolBar">
   
-    <a (click)="uploadImg()" style="cursor:pointer" class="tool-icon" >
+    <a (click)="uploadImg()"  matTooltip="上传图片" style="cursor:pointer" class="tool-icon" >
         <i class="fa fa-picture-o" aria-hidden="true"></i>
       </a>
-    <a (click)="addLink()" style="cursor:pointer" class="tool-icon">
+    <a (click)="addLink()" matTooltip="添加链接" style="cursor:pointer" class="tool-icon">
         <i class="fa fa-link" aria-hidden="true"></i>
     </a>
   
     <i class="separator">|</i>
-    <a href="http://lab.lepture.com/editor/markdown" target="_blank" class="tool-icon">
+    <a href="http://lab.lepture.com/editor/markdown" matTooltip="不会markdown的戳这里!!" target="_blank" class="tool-icon">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
     </a>       
-    <a (click)="switchMode()" style="cursor:pointer" class="tool-icon" [ngClass]="{isActive:currentTab==1}">
+    <a (click)="switchMode()" matTooltip="预览" style="cursor:pointer" class="tool-icon" [ngClass]="{isActive:currentTab==1}">
       <i class="fa fa-eye" aria-hidden="true"></i>
     </a>
   
