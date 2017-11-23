@@ -25,7 +25,7 @@ export class ServiceHandleService {
     if (body.code == 1){
       return body.data || { };
     }else{
-      if (body.message == '用户不存在'){
+      if (body.data == '用户不存在'){
         this.router.navigate(['/login']);
       }
       toastr.error(body.message)      
@@ -39,7 +39,7 @@ export class ServiceHandleService {
       toastr.success(body.message)
       return body.data || { };
     }else{        
-      if (body.message == '用户不存在'){
+      if (body.data == '用户不存在'){
         this.router.navigate(['/login']);
       }    
       toastr.error(body.data,body.message)    
