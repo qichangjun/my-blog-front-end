@@ -1,5 +1,5 @@
 
-<mat-card class="ad-card" *ngIf="!isClosed">
+<mat-card class="ad-card" [@flyInOut]="isClosed" *ngIf="!isClosed">
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
       <mat-card-title>欢迎</mat-card-title>
