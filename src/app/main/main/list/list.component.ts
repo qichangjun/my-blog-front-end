@@ -23,6 +23,7 @@ export class ListComponent implements OnInit {
     totalElement : 1,
     labels : []
   }
+  hotLabels : Array<any> = [];
   labelLists : Array<any> = [];
   constructor(
     private route: ActivatedRoute,
@@ -35,14 +36,21 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      this.parameter = Object.assign(this.parameter,params)
-      
+      this.parameter = Object.assign(this.parameter,params)      
       this.parameter.currentPage = Number(this.parameter.currentPage)
       if (this.parameter.labels && typeof(this.parameter.labels) == 'string'){
         this.parameter.labels = [this.parameter.labels]
       }
       this.getArticleLists()
-    })    
+    });  
+    (async ()=>{
+      this.hotLabels = await this._MainService.getLabelLists('')  
+      this.hotLabels.forEach((c)=>{        
+        if (this.parameter.labels.indexOf(c.name) >= 0){
+          c.isSelected = true          
+        }
+      })  
+    })()  
   }
   
   async getArticleLists(){
@@ -56,9 +64,19 @@ export class ListComponent implements OnInit {
     this.router.navigate([], { queryParams: this.parameter });
   }
 
-  addLabel(e){
-    this.parameter.labels = e.chips
-    this.getArticleLists()
+
+  toggleLabel(label){
+    label.isSelected = !label.isSelected
+    let arr = Object.assign([],this.parameter.labels)
+    if (label.isSelected){
+      arr.push(label.name)      
+    }else{
+      arr.splice(this.parameter.labels.findIndex((c)=>{
+        return c == label.name
+      }),1)      
+    }
+    this.parameter.labels = arr
+    this.router.navigate([], { queryParams: this.parameter });
   }
 
   createArticle(){

@@ -2,23 +2,31 @@
 width: 800px;
 margin: 0 auto;
 background-color: #fff;">
-<div style="padding: 15px 15px;">
-    <div *ngIf="!inputModel" style="margin-bottom:0.5em">
-        <mat-chip-list style="margin-bottom: 10px;
-        display: block;">
-            <mat-chip *ngFor="let chip of parameter.labels;let i = index">{{chip}}</mat-chip>                   
-        </mat-chip-list>
-        <a style="cursor:pointer" (click)="inputModel=true">选择标签</a>     
-    </div>
-   
-    <div *ngIf="inputModel" style="margin-bottom:0.5em">        
-        <app-label-input [chips]="parameter.labels"  (addLabel)="addLabel($event)"></app-label-input> 
-        <button  mat-raised-button (click)="inputModel=false">退出编辑</button>   
-    </div>    
-    <a [hidden]="parameter.sortField == 'creatDate'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'creatDate',sortWay:-1}" [queryParamsHandling]="'merge'">最新发布</a>
-    <a [hidden]="parameter.sortField == 'replyNum'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'replyNum',sortWay:-1}" [queryParamsHandling]="'merge'">按回复数</a>
-    <a [hidden]="parameter.sortField == 'viewed'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'viewed',sortWay:-1}" [queryParamsHandling]="'merge'">按热度</a>
-    <a [hidden]="parameter.sortField == 'lastReplyTime'" style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'lastReplyTime',sortWay:-1}" [queryParamsHandling]="'merge'">按最新回复</a>
+<div class="filter-toole" style="padding: 15px 15px;border-bottom:1px solid #f0f0f0;">
+    <div  style="margin-bottom:0.5em">
+        <div style="    width: 100%;
+        float: left;margin-bottom: 10px;">   
+            <span style="float: left;
+            line-height: 36px;
+            margin-right: 15px;">热门标签:</span>
+            <span class="chip" *ngFor="let hotLabel of hotLabels;let i = index" (click)="toggleLabel(hotLabel)">
+                    {{hotLabel.name}}
+                    <i class="fa fa-check" aria-hidden="true" *ngIf="hotLabel.isSelected"></i>
+            </span> 
+        </div>
+    </div> 
+    <span [ngClass]="{active : parameter.sortField == 'lastReplyTime'}">
+            <a  style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'lastReplyTime',sortWay:-1}" [queryParamsHandling]="'merge'">按最新回复</a>
+    </span>
+    <span [ngClass]="{active : parameter.sortField == 'creatDate'}">
+        <a   style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'creatDate',sortWay:-1}" [queryParamsHandling]="'merge'">最新发布</a>
+    </span>
+    <span [ngClass]="{active : parameter.sortField == 'replyNum'}">
+        <a    style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'replyNum',sortWay:-1}" [queryParamsHandling]="'merge'">按回复数</a>
+    </span>
+    <span [ngClass]="{active : parameter.sortField == 'viewed'}"  >
+        <a  style="margin-right: 10px;font-size: 16px;" href="" [routerLink]="['/main/list']"  [queryParams]="{sortField:'viewed',sortWay:-1}" [queryParamsHandling]="'merge'">按热度</a>
+    </span>                
 </div>
   <mat-list style="overflow: auto;
   height: calc(100% - 213px);

@@ -22,7 +22,7 @@ export class LabelInputComponent implements OnInit {
     private _MainService : MainService
 ) {}
 
-  ngOnInit(){
+  ngOnInit(){      
     this.searchControl.valueChanges
     .debounceTime(500)
     .distinctUntilChanged()
@@ -32,7 +32,6 @@ export class LabelInputComponent implements OnInit {
   }
 
   async addChip(){
-    // await this._MainService.addLabel(this.labelInput)
     if (!this.labelInput){
       return
     }

@@ -1,0 +1,30 @@
+.chip{
+    float: left;
+    line-height: 24px;
+    display: inline-flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding-left: 0.8em;
+    margin: 0.4em 0.4em 0 0;
+    background-color: #f1f8ff;
+    border-radius: 3px;
+    font-size: 14px !important;
+    padding-right: 0.8em;
+    cursor: pointer;
+  }
+
+.filter-toole span a {
+    text-decoration : none;
+    color: #80bd01;
+}
+
+.chip:hover {
+  background-color: #ddeeff;
+}
+
+.active a{
+  background-color: #80bd01;
+  color: #fff !important;
+  padding: 3px 4px;
+  border-radius: 3px;
+}
