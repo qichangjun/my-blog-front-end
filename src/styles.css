@@ -19,3 +19,7 @@ button{ outline:none; }
 .editContent .mat-tab-header {
     display: none !important
 }
+
+img {
+    max-width: 100% !important;
+}
