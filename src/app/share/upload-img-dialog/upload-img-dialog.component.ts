@@ -36,6 +36,7 @@ export class UploadImgDialogComponent implements OnInit {
       },
       previewsContainer : false,
       url : this._constantService.baseUrl() + this._apiUrlService['uploadImg']
+      // url : this._constantService.baseUrl() + this._apiUrlService['uploadM']
     }
     this.dropZone = new Dropzone(this.uploadContainer.nativeElement,option)
 

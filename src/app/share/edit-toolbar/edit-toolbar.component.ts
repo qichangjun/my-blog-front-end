@@ -1,10 +1,15 @@
-import { Component, OnInit ,EventEmitter,Output,Input} from '@angular/core';
+import { Component, OnInit ,EventEmitter,Output,Input,ViewChild} from '@angular/core';
 
 import { MatDialog, MatDialogRef,MatDialogConfig } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { UploadImgDialogComponent } from '../upload-img-dialog/upload-img-dialog.component';
 import { AddLinkDialogComponent } from '../add-link-dialog/add-link-dialog.component';
+import { AuthService } from '../../core/service/auth.service';
+import { ConstantService } from '../../core/service/constant.service';
+import { ApiUrlService } from '../../core/service/api.service';
 declare var marked:any;
+declare var Dropzone:any;
+declare var toastr:any;
 @Component({
   selector: 'app-edit-toolbar',
   templateUrl: './edit-toolbar.component.html',
@@ -12,12 +17,53 @@ declare var marked:any;
 })
 export class EditToolbarComponent implements OnInit {
   @Input() artInfo;
+  @ViewChild('uploadMd') uploadMd:any;
+  isUploading : boolean = false;
   currentTab : number = 0;
+  dropZone : any;
+  uploadingMdFile : any;
   constructor(
+    private _AuthService : AuthService,
+    private _constantService : ConstantService,
+    private _apiUrlService : ApiUrlService,
     private dialog: MatDialog
   ) { }
 
   ngOnInit() {
+    let option = {
+      parallelUploads : 1,
+      maxFiles : 1,   
+      acceptedFiles : '.md',   
+      params : {
+        token : this._AuthService.getCurrentUser().accessToken
+      },
+      previewsContainer : false,
+      url : this._constantService.baseUrl() + this._apiUrlService['uploadMdFile']
+    }
+    this.dropZone = new Dropzone(this.uploadMd.nativeElement,option)
+
+    this.dropZone.on('uploadprogress',(file,progress)=>{
+      file.upload.progress = parseInt(file.upload.progress)      
+    })
+
+    this.dropZone.on('sending',(file,xhr,formData)=>{
+      this.uploadingMdFile = file   
+      this.isUploading = true   
+    })
+    
+    this.dropZone.on('success',(file,res)=>{
+      file.status = res.code == 1 ? 'success'  : 'error';
+      this.isUploading = false
+      if (res.code == 1){
+        this.artInfo['content'] = res.data
+        marked(this.artInfo['content'],(err,content)=>{      
+          this.artInfo['MarkdownContent'] = content
+        })
+      }else{        
+        toastr.error('上传出错',res.data);
+      }
+      this.dropZone.removeFile(file);
+    })
   }
 
   uploadImg(){

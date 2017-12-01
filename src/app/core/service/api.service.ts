@@ -20,7 +20,7 @@ export class ApiUrlService {
   deleteReply = '/api/art/deleteReply'
 
   uploadImg = '/api/upload/uploadImg'
-
+  uploadMdFile = '/api/upload/getMdFileContent'
 
   getLabelLists = '/api/label/getLabelLists'
   addLabel = '/api/label/addLabel'

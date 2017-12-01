@@ -1,14 +1,23 @@
 
-
+<div *ngIf="isUploading" style="background: red;
+color: white;">
+    <span>
+        上传中...请不要关闭页面({{uploadingMdFile.upload.filename + ':' + uploadingMdFile.upload.progress}})
+    </span>
+</div>
 <div class="toolBar">
-  
+    
     <a (click)="uploadImg()"  matTooltip="上传图片" style="cursor:pointer" class="tool-icon" >
         <i class="fa fa-picture-o" aria-hidden="true"></i>
-      </a>
+    </a>
     <a (click)="addLink()" matTooltip="添加链接" style="cursor:pointer" class="tool-icon">
         <i class="fa fa-link" aria-hidden="true"></i>
     </a>
   
+    <a  matTooltip="导入md文件" style="cursor:pointer" class="tool-icon" >
+        <i #uploadMd id="uploadMd" class="fa fa-upload" aria-hidden="true"></i>
+    </a>
+
     <i class="separator">|</i>
     <a href="http://lab.lepture.com/editor/markdown" matTooltip="不会markdown的戳这里!!" target="_blank" class="tool-icon">
       <i class="fa fa-info-circle" aria-hidden="true"></i>
