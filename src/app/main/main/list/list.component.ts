@@ -35,22 +35,24 @@ export class ListComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
-      this.parameter = Object.assign(this.parameter,params)      
-      this.parameter.currentPage = Number(this.parameter.currentPage)
-      if (this.parameter.labels && typeof(this.parameter.labels) == 'string'){
-        this.parameter.labels = [this.parameter.labels]
-      }
-      this.getArticleLists()
-    });  
-    (async ()=>{
-      this.hotLabels = await this._MainService.getLabelLists('')  
+    var filterLabels = ()=>{
       this.hotLabels.forEach((c)=>{        
         if (this.parameter.labels.indexOf(c.name) >= 0){
           c.isSelected = true          
         }
-      })  
-    })()  
+      }) 
+    }    
+    this.route.queryParams.subscribe(params => {
+      this.parameter = Object.assign(this.parameter,params)      
+      this.parameter.currentPage = Number(this.parameter.currentPage)
+      this.parameter.labels = Array.isArray(this.parameter.labels) ? this.parameter.labels : [this.parameter.labels]     
+      this.getArticleLists()
+      filterLabels()
+    });  
+    (async ()=>{
+      this.hotLabels = await this._MainService.getLabelLists('')  
+      filterLabels()
+    })()      
   }
   
   async getArticleLists(){
