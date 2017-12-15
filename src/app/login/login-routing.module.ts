@@ -4,12 +4,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service'
 const routes:Routes = [
-  { path:'login',component:LoginComponent},
+  { path:'',component:LoginComponent}
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes)
+    RouterModule.forChild(routes)
   ],
   exports:[RouterModule],
   providers:[LoginService],

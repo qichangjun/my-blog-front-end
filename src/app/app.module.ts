@@ -4,7 +4,6 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { AppRouteModule } from './app-route.module';
-import { LoginModule } from './login/login.module';
 import { BaseRequestOptions,Headers } from '@angular/http';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 declare var marked:any;
@@ -35,8 +34,8 @@ marked.setOptions({
   imports: [    
     BrowserAnimationsModule,
     CoreModule.forRoot(CustomRequestOptions),
-    AppRouteModule,
-    LoginModule
+    AppRouteModule
+    
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy}

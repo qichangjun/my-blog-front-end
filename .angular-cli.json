@@ -27,7 +27,8 @@
         "../node_modules/jquery/dist/jquery.min.js",
         "../node_modules/toastr/build/toastr.min.js",
         "../node_modules/marked/marked.min.js",
-        "../node_modules/dropzone/dist/dropzone.js"       
+        "../node_modules/dropzone/dist/dropzone.js",
+        "../node_modules/lodash/lodash.js"       
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {

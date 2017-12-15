@@ -9,6 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material';
 import { DeleteReplyDialogComponent } from '../dialog/delete-reply-dialog/delete-reply-dialog.component';
 
 declare var marked:any;
+declare var _:any;
 @Component({
   selector: 'app-topic',
   templateUrl: './topic.component.html',
@@ -46,6 +47,8 @@ export class TopicComponent implements OnInit {
       this._TopicService.updateCheckTimes(params)
       this.getArtInfo()
     })
+
+    
   }
 
 
