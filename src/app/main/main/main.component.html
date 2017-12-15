@@ -4,10 +4,10 @@
     <div style="right: 0px;
     position: absolute;
     font-size: 15px;" class="toolBar">
-        <a style="margin-right:10px;" *ngIf="_AuthService.getCurrentUserInfo().role == 'admin'" [routerLink]="['/main/blogManage']">管理社区</a>
+        <a style="margin-right:10px;" *ngIf="_AuthService.getCurrentUserInfo().role == 'admin'" [routerLink]="['blogManage']">管理社区</a>
         <a style="margin-right:10px;" [routerLink]="['/main']">首页</a>
-        <a style="margin-right:10px;" [routerLink]="['/main/createArt']">发表文章</a>
-        <a style="margin-right:10px;" [routerLink]="['/main/user',_AuthService.getCurrentUserInfo().userName]">个人设置</a>
+        <a style="margin-right:10px;" [routerLink]="['createArt']">发表文章</a>
+        <a style="margin-right:10px;" [routerLink]="['user',_AuthService.getCurrentUserInfo().userName]">个人设置</a>
         <a style="margin-right:10px;position:relative;cursor:pointer"  [matMenuTriggerFor]="menu">
                 <i class="fa fa-circle" aria-hidden="true" style="color: red;
                 font-size: 10px;
