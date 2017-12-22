@@ -13,7 +13,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./blog-manage.component.css']
 })
 export class BlogManageComponent implements OnInit {
-
   parameter = {
     currentPage : 1,
     pageSize : 10,
@@ -29,7 +28,8 @@ export class BlogManageComponent implements OnInit {
     public _AuthService : AuthService,
     private MatDialogConfig : MatDialogConfig,
     private dialog: MatDialog
-  ) { }
+  ) {     
+  }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {

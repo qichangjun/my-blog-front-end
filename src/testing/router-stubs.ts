@@ -58,8 +58,7 @@ export class ActivatedRouteStub {
 
     // ActivatedRoute.params is Observable
     private subject = new BehaviorSubject(this.testParams);
-    params = this.subject.asObservable();
-  
+    queryParams = this.subject.asObservable();    
     // Test parameters
     private _testParams: {};
     get testParams() { return this._testParams; }
