@@ -30,4 +30,5 @@ export class DeleteArticleDialogComponent implements OnInit {
     await this._MainService.deleteArticle(this.data.row._id)
     this.dialogRef.close(true)
   }
+
 }

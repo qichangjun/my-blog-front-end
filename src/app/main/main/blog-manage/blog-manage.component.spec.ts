@@ -1,16 +1,23 @@
-import { tick,fakeAsync,async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { inject,tick,fakeAsync,async, flush,ComponentFixture, TestBed } from '@angular/core/testing';
 import { BlogManageComponent } from './blog-manage.component';
-import { Component } from '@angular/core';
+import { Component,NgModule } from '@angular/core';
 import { MainService } from '../main.service';
 import { AuthService } from '../../../core/service/auth.service';
 import { ActivatedRouteStub,RouterLinkStubDirective,queryParamsStubDirective,queryParamsHandlingStubDirective } from '../../../../testing/router-stubs';
 import { ShareModule } from '../../../share/share.module';
 import { ActivatedRoute,Router } from '@angular/router';
-// import { MatDialog, MatDialogRef,MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogRef,MatDialogConfig,MAT_DIALOG_DATA } from '@angular/material';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {OverlayContainer} from '@angular/cdk/overlay';
 import { By } from '@angular/platform-browser';
+import { DeleteArticleDialogComponent } from '../dialog/delete-article-dialog/delete-article-dialog.component';
+
 describe('BlogManageComponent', () => {
   let component: BlogManageComponent;
   let fixture: ComponentFixture<BlogManageComponent>;
+  let dialog : MatDialog
+  let overlayContainer: OverlayContainer;
+  let overlayContainerElement
   class RouterStub {
     navigateByUrl(url: string) { return url; }
   }
@@ -23,7 +30,7 @@ describe('BlogManageComponent', () => {
 
   class MainServiceSpy{
     getArticleLists = jasmine.createSpy('getArticleLists').and.callFake(
-      (params) => Promise.resolve(true).then(() => {                 
+      (params?) => Promise.resolve(true).then(() => {                 
           return {
             data : [
               {_id: "5a3c5fef7b9ca31175a20173", title: "箭头函数与普通函数的区别",author: "qichangjun"},                    
@@ -37,16 +44,25 @@ describe('BlogManageComponent', () => {
   
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[ShareModule],
+      imports:[ShareModule,NoopAnimationsModule,DialogTestModule],
       declarations: [ BlogManageComponent,RouterLinkStubDirective ],
       providers:[
+        MatDialogConfig,MatDialog,
         { provide : Router,useClass : RouterStub },
         { provide : ActivatedRoute,useClass : ActivatedRouteStub},
         { provide : AuthService,useClass : AuthServiceSpy},
         { provide : MainService,useClass : MainServiceSpy}
-      ]
+      ],
+
     })
     .compileComponents();
+  }));
+
+  beforeEach(inject([MatDialog,OverlayContainer],
+    (d: MatDialog ,oc: OverlayContainer) => {
+      dialog = d;
+      overlayContainer = oc;
+      overlayContainerElement = oc.getContainerElement();
   }));
 
   it('should create',fakeAsync(() => {
@@ -74,5 +90,36 @@ describe('BlogManageComponent', () => {
     expect(title.textContent).toBe('箭头函数与普通函数的区别')
   }))
 
+  it('should send art id to dialog',fakeAsync(()=>{
+    let fixture = TestBed.createComponent(BlogManageComponent);
+    fixture.detectChanges();   
+    let component = fixture.componentInstance; 
+    component.parameter = {
+      currentPage : 1,
+      pageSize : 10,
+      sortField : 'lastReplyTime',
+      totalElement : 1,
+      userName : 'qichangjun'
+    }
+    tick();
+    fixture.detectChanges();
+    const title = fixture.debugElement.query(By.css('a.deleteArt')).nativeElement; 
+    title.click();
+    flush();    
+    fixture.detectChanges();
+    let deleteTitle = overlayContainerElement.querySelector('span').textContent
+    expect(deleteTitle).toContain('确定要删除标题为箭头函数与普通函数的区别的文章吗')
+  }))
 });
 
+@NgModule({
+  imports: [
+    ShareModule
+   ],
+  exports: [DeleteArticleDialogComponent],
+  declarations: [DeleteArticleDialogComponent],
+  entryComponents: [
+    DeleteArticleDialogComponent
+  ]
+})
+class DialogTestModule { }

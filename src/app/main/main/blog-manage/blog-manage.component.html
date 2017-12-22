@@ -14,8 +14,8 @@ width: 87%;
   <mat-list>
     <mat-list-item *ngFor="let row of rows">
       <h3 matLine> 
-        <a [routerLink]="['/main/topic',row._id]">{{row.title}}</a> 
-        <a href="javacript:void(0)" (click)="deleteArticle(row,'full')" >删除</a>
+        <a class="artTitle" [routerLink]="['/main/topic',row._id]">{{row.title}}</a> 
+        <a class="deleteArt" href="javacript:void(0)" (click)="deleteArticle(row,'full')" >删除</a>
       </h3>
     </mat-list-item>
     <pagination [boundaryLinks]="true" [totalItems]="this.parameter.totalElement" [(ngModel)]="this.parameter.currentPage"
