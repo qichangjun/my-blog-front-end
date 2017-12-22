@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginInfo } from './login-info';
 import { LoginService } from './login.service';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { MatDialog, MatDialogRef,MatDialogConfig } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
@@ -16,7 +16,6 @@ export class LoginComponent implements OnInit {
   loginInfo = new LoginInfo('','')
   constructor(
     public _LoginService : LoginService,
-    private route: ActivatedRoute,
     private router: Router,
     private MatDialogConfig : MatDialogConfig,
     private dialog: MatDialog,

@@ -5,7 +5,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { MainService } from '../main.service';
-import { AuthService } from '../../../core/service/auth.service';
 
 import { CreateArticleDialogComponent } from '../dialog/create-article-dialog/create-article-dialog.component';
 @Component({
@@ -28,7 +27,6 @@ export class ListComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private _AuthService : AuthService,
     private MatDialogConfig : MatDialogConfig,
     private dialog: MatDialog,
     private _MainService : MainService

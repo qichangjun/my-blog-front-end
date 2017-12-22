@@ -34,8 +34,7 @@ marked.setOptions({
   imports: [    
     BrowserAnimationsModule,
     CoreModule.forRoot(CustomRequestOptions),
-    AppRouteModule
-    
+    AppRouteModule    
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy}

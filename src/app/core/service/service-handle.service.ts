@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { ActivatedRoute, Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 declare var toastr:any;
+
+
 @Injectable()
 export class ServiceHandleService {
 

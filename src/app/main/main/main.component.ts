@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user/user.service';
 import { AuthService } from '../../core/service/auth.service';
+
+declare var moment:any;
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
@@ -15,7 +17,7 @@ export class MainComponent implements OnInit {
     role : null,
     message : []
   }
-
+  mydate : Date;
   constructor(
     private _UserService : UserService,
     public _AuthService : AuthService
@@ -23,6 +25,12 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo()
+    console.log (new Date())
+    console.log (moment().add(10,'d').format("YYYY-MM-DD HH:mm:ss"));
+  }
+
+  testDate(){
+    console.log (moment(this.mydate).format("YYYY-MM-DD HH:mm:ss"))
   }
 
   async getUserInfo(){
