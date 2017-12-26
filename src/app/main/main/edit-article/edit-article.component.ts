@@ -29,7 +29,7 @@ export class EditArticleComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private _MainService : MainService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.route.params

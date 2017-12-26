@@ -57,13 +57,14 @@ export class queryParamsHandlingStubDirective {
 export class ActivatedRouteStub {    
     // ActivatedRoute.params is Observable
     private subject = new BehaviorSubject(this.testParams);
-    queryParams = this.subject.asObservable();    
+    queryParams = this.subject.asObservable();  
+    params = this.subject.asObservable();      
     // Test parameters
     private _testParams: {};
     get testParams() { return this._testParams; }
-    set testParams(params: {}) {
-      this._testParams = params;
-      this.subject.next(params);
+    set testParams(paramter: {}) {
+      this._testParams = paramter;
+      this.subject.next(paramter);
     }
   
     // ActivatedRoute.snapshot.params
@@ -71,8 +72,6 @@ export class ActivatedRouteStub {
       return { params: this.testParams };
     }
   }
-
-
 
   //-------------- Router模拟指令 -------------------
 export class RouterStub {
