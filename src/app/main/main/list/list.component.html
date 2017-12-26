@@ -36,7 +36,7 @@ background-color: #fff;">
           <a routerLink="{{'../topic/' + row._id}}">{{row.title}}</a>     
         </h3>
         <p matLine> 作者:
-          <a [routerLink]="['/main/user',row.author]">{{row.author}}</a>
+          <a [routerLink]="['/main/user',row.author]" >{{row.author}}</a>
            发布日期:{{row.creatDate}}</p>
         <p matLine>
           <span>所属标签:</span>
@@ -45,12 +45,12 @@ background-color: #fff;">
         <p matLine class="demo-2"> 浏览次数:{{row.viewed}} </p>
       </mat-list-item>
     </mat-list>
-    <pagination [boundaryLinks]="true" [totalItems]="this.parameter.totalElement" [(ngModel)]="this.parameter.currentPage"
+    <!-- <pagination [boundaryLinks]="true" [totalItems]="this.parameter.totalElement" [(ngModel)]="this.parameter.currentPage"
     class="pagination-sm"
     [maxSize]="5"
     [itemsPerPage]="10"
     (pageChanged)="pageChanged($event)"
-    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>    
+    previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>     -->
 </div>
 
 

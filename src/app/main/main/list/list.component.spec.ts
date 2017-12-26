@@ -1,72 +1,106 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement }    from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { async, ComponentFixture, TestBed, fakeAsync,tick } from '@angular/core/testing';
+import { Component, OnInit,Inject,Input,Output,EventEmitter } from '@angular/core';
 
-import { ListComponent } from './list.component';
-// import { MainService } from '../main.service';
-import { element } from 'protractor';
-import { RouterModule,Router,ActivatedRoute } from '@angular/router';
-import { ActivatedRouteStub,RouterLinkStubDirective,queryParamsStubDirective,queryParamsHandlingStubDirective } from '../../../../testing/router-stubs';
-import { ShareModule } from '../../../share/share.module'; 
+import { ShareModule } from '../../../share/share.module';
+import { RouterStub,ActivatedRouteStub,queryParamsStubDirective,queryParamsHandlingStubDirective } from '../../../../testing/router-stubs'
+import { Router,ActivatedRoute } from '@angular/router';
 import { MainService } from '../main.service';
-// import { AuthService } from '../../../core/service/auth.service';
-// import { ConstantService } from '../../../core/service/constant.service';
-import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-class RouterStub {
-  navigateByUrl(url: string) { return url; }
-}
-
+import { RouterLinkStubDirective } from '../../../../testing/router-stubs';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule,MatListModule,MatDialogConfig } from '@angular/material';
+import { By } from '@angular/platform-browser';
+import { ListComponent } from './list.component';
+import { PaginationModule,PaginationConfig } from 'ngx-bootstrap/pagination';
 describe('ListComponent', () => {
-  let fixture: ComponentFixture<ListComponent>;
   let component: ListComponent;
-  let MainServiceStub = {
-    getArticleLists : () => {
-      Promise.resolve(1)
-    }
+  let fixture: ComponentFixture<ListComponent>;
+
+  class MainServiceSpy{
+    getArticleLists = jasmine.createSpy('getArticleLists').and.callFake(
+      (params) => Promise.resolve(true).then(() => {         
+          return {
+            data : [
+              {title:'title',author:'author',label:['label1'],_id:111}
+            ],
+            totalElement : 1
+          }
+        }
+      ))
+    getLabelLists = jasmine.createSpy('getLabelLists').and.callFake(
+      (params) => Promise.resolve(true).then(() => {         
+          return [{name:'label1',_id:11111}]
+        }
+      ))
   }
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[ShareModule,RouterModule],
-      declarations: [ ListComponent ],
-      providers: [ActivatedRouteStub,
-        { provide: ActivatedRoute,      useClass: ActivatedRouteStub },
-        { provide: Router,              useClass: RouterStub },
-        { provide: MainService,         useValue: MainServiceStub },
-        { provide: LocationStrategy,    useClass: HashLocationStrategy }
+      imports:[FormsModule,ReactiveFormsModule,MatDialogModule,MatListModule,PaginationModule],
+      declarations: [ ListComponent,RouterLinkStubDirective,queryParamsStubDirective,queryParamsHandlingStubDirective],
+      providers:[
+        PaginationConfig,MatDialogConfig,
+        {provide:ActivatedRoute,useClass:ActivatedRouteStub},
+        {provide:Router,useClass:RouterStub}                
       ]
-    });
-    TestBed.compileComponents();
+    }).overrideComponent(ListComponent,{
+      set: {
+        providers:[
+          {provide:MainService,useClass:MainServiceSpy}
+        ]
+      }
+    })
+    .compileComponents();
   }));
 
-  describe('basic behaviors',() =>{
-    let mainService : MainService;
-    let spy;
-    let de;
-    let linkDes;
-    let links;
-
-    beforeEach(() => {
-      fixture = TestBed.createComponent(ListComponent);
-      fixture.detectChanges();
-      mainService = fixture.debugElement.injector.get(MainService);
-      spy = spyOn(mainService,'getArticleLists')
-            .and.returnValue(Promise.resolve({
-              data:[{title:'title1'}],
-              code : 1
-            }))
-      de = fixture.debugElement.query(By.css('.mat-line a'))      
-    });
-  
-    it('should create', () => {
-      fixture = TestBed.createComponent(ListComponent);
-      component = fixture.componentInstance
-      expect(component).toBeTruthy();
-    });
-  
-    it('should stll not show quote after OnInit',()=>{
-      fixture = TestBed.createComponent(ListComponent);
-      fixture.detectChanges();
-    })
+  beforeEach(()=>{
+    let route = TestBed.get(ActivatedRoute)
+    route.testParams = {labels:'labels1',currentPage:1}
   })
-  
+
+  it('should be create',()=>{
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+  })
+
+  it('should get list info ',fakeAsync(()=>{
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    const titleEl = fixture.debugElement.query(By.css('h3 a')).nativeElement; 
+    expect(titleEl.textContent).toBe('title')    
+  }))
+
+  it('should get label info ',fakeAsync(()=>{
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    const labelEl = fixture.debugElement.query(By.css('span.chip')).nativeElement; 
+    expect(labelEl.textContent).toContain('label1')    
+  }))
+
+  it('should toggle label status ',fakeAsync(()=>{
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    expect(component).toBeTruthy();
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    const labelEl = fixture.debugElement.query(By.css('span.chip')).nativeElement; 
+    labelEl.click();
+    fixture.detectChanges();
+    expect(component.parameter.labels.length).toBe(2)
+    labelEl.click();
+    expect(component.parameter.labels.length).toBe(1)
+  }))
 });
