@@ -13,7 +13,6 @@ export class DeleteArticleDialogComponent implements OnInit {
 
   constructor(
     private _MainService : MainService,
-    private MatDialogConfig : MatDialogConfig,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<DeleteArticleDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

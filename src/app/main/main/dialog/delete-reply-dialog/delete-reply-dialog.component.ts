@@ -12,7 +12,6 @@ import { TopicService } from '../../topic/topic.service';
 export class DeleteReplyDialogComponent implements OnInit {
   constructor(
     private _TopicService : TopicService,
-    private MatDialogConfig : MatDialogConfig,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<DeleteReplyDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any

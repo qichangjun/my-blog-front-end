@@ -3,7 +3,8 @@ import { MatDialog, MatDialogRef,MatDialogConfig } from '@angular/material';
 import { MAT_DIALOG_DATA } from '@angular/material';
 import { MainService } from '../../main/main.service';
 
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-create-art',
   templateUrl: './create-art.component.html',
@@ -19,10 +20,9 @@ export class CreateArtComponent implements OnInit {
   }
   chips : Array<any> = [];
   constructor(
-    private route: ActivatedRoute,
     private router: Router,
     private _MainService : MainService
-  ) { }
+  ) {}
 
   ngOnInit() {
   }

@@ -123,3 +123,81 @@ describe('BlogManageComponent', () => {
   ]
 })
 class DialogTestModule { }
+
+
+
+
+    describe('BlogManageComponent', () => {
+      let component: BlogManageComponent;
+      let fixture: ComponentFixture<BlogManageComponent>;
+      let dialog : MatDialog
+      let overlayContainer: OverlayContainer;
+      let overlayContainerElement
+      class RouterStub {
+        navigateByUrl(url: string) { return url; }
+      }
+
+      class AuthServiceSpy {
+        getCurrentUserInfo(){
+          return {role:'admin'}
+        }
+      }
+
+      class MainServiceSpy{
+        getArticleLists = jasmine.createSpy('getArticleLists').and.callFake(
+          (params?) => Promise.resolve(true).then(() => {                 
+              return {
+                data : [
+                  {_id: "5a3c5fef7b9ca31175a20173", title: "箭头函数与普通函数的区别",author: "qichangjun"},                    
+                  {_id: "5a33293e4d96950addc904f4", title: "test", content: "test", author: "qichangjun"}
+                ],
+                totalElement : 2  
+              }        
+            }
+          ))
+      }
+      
+      beforeEach(async(() => {
+        TestBed.configureTestingModule({
+          imports:[ShareModule,NoopAnimationsModule,DialogTestModule],
+          declarations: [ BlogManageComponent,RouterLinkStubDirective ],
+          providers:[
+            MatDialogConfig,MatDialog,
+            { provide : Router,useClass : RouterStub },
+            { provide : ActivatedRoute,useClass : ActivatedRouteStub},
+            { provide : AuthService,useClass : AuthServiceSpy},
+            { provide : MainService,useClass : MainServiceSpy}
+          ],
+
+        })
+        .compileComponents();
+      }));
+
+      beforeEach(inject([MatDialog,OverlayContainer],
+        (d: MatDialog ,oc: OverlayContainer) => {
+          dialog = d;
+          overlayContainer = oc;
+          overlayContainerElement = oc.getContainerElement();
+      })); 
+
+      it('should send art id to dialog',fakeAsync(()=>{
+        let fixture = TestBed.createComponent(BlogManageComponent);
+        fixture.detectChanges();   
+        let component = fixture.componentInstance; 
+        component.parameter = {
+          currentPage : 1,
+          pageSize : 10,
+          sortField : 'lastReplyTime',
+          totalElement : 1,
+          userName : 'qichangjun'
+        }
+        tick();
+        fixture.detectChanges();
+        const title = fixture.debugElement.query(By.css('a.deleteArt')).nativeElement; 
+        title.click();
+        flush();    
+        fixture.detectChanges();
+        let deleteTitle = overlayContainerElement.querySelector('span').textContent
+        expect(deleteTitle).toContain('确定要删除标题为箭头函数与普通函数的区别的文章吗')
+      }))
+    });
