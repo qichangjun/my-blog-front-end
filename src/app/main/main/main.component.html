@@ -8,8 +8,9 @@
         <a style="margin-right:10px;" [routerLink]="['/main']">首页</a>
         <a style="margin-right:10px;" [routerLink]="['createArt']">发表文章</a>
         <a style="margin-right:10px;" [routerLink]="['user',_AuthService.getCurrentUserInfo().userName]">个人设置</a>
-        <a style="margin-right:10px;position:relative;cursor:pointer"  [matMenuTriggerFor]="menu">
-                <i class="fa fa-circle" aria-hidden="true" style="color: red;
+        <a style="margin-right:10px;position:relative;cursor:pointer" class="bell" [matMenuTriggerFor]="menu">
+            a    
+            <i class="fa fa-circle" aria-hidden="true" style="color: red;
                 font-size: 10px;
                 right: 0px;
                 position: absolute;
@@ -20,7 +21,8 @@
             <ul>
                 <li  *ngFor="let message of userInfo.message">
                     <span class="message-list"  matTooltip="{{message.content}}" >
-                            系统通知@   <a  (click)="deleteMessage(message._id)" [routerLink]="['/main/topic',+ message.topciId]">{{message.content}}</a>
+                            系统通知@   
+                            <a  (click)="deleteMessage(message._id)" [routerLink]="['/main/topic',+ message.topciId]">{{message.content}}</a>
                     </span>                     
                 </li>
                 <li *ngIf="userInfo.message.length == 0">

@@ -10,7 +10,7 @@ declare var moment:any;
   providers:[UserService]
 })
 export class MainComponent implements OnInit {
-  userInfo  = {
+  userInfo = {
     userName : null,
     email : null,
     registerTime : null,
@@ -25,12 +25,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.getUserInfo()
-    console.log (new Date())
-    console.log (moment().add(10,'d').format("YYYY-MM-DD HH:mm:ss"));
-  }
-
-  testDate(){
-    console.log (moment(this.mydate).format("YYYY-MM-DD HH:mm:ss"))
   }
 
   async getUserInfo(){
